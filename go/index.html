@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plans With Paws</title><meta name="robots" content="noindex">
+<style>body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;background:#fff;color:#222}</style>
+</head><body><p>🐾 Plans With Paws…</p>
+<script>
+// Compteur de clics vers la boutique (17/11) : note le réseau d'origine (?c=youtube…) puis envoie sur la boutique.
+// Aucune donnée personnelle. Les robots d'aperçu n'exécutent pas ce script : seuls les vrais visiteurs comptent.
+(function () {
+  var q = new URLSearchParams(location.search);
+  var c = (q.get("c") || "autre").toLowerCase().replace(/[^a-z]/g, "").slice(0, 20) || "autre";
+  var p = (q.get("p") || "").replace(/[^0-9]/g, "");
+  var boutique = "https://plans-with-paws.printify.me" + (p ? "/product/" + p : "");
+  var compteur = "https://script.google.com/macros/s/AKfycbw7bDpoyqGxYCMbLgM4fGmK-rVZWtf_cYdKno8brb_HWyiZC3cutcnbTNd0gU5bqM-BMA/exec";
+  var parti = false;
+  function go() { if (!parti) { parti = true; location.replace(boutique); } }
+  try {
+    fetch(compteur + "?log=" + encodeURIComponent(c) + (p ? "&p=" + p : ""), { mode: "no-cors", keepalive: true }).then(go, go);
+  } catch (e) { go(); }
+  setTimeout(go, 1200);
+})();
+</script>
+<noscript><a href="https://plans-with-paws.printify.me">Plans With Paws shop</a></noscript>
+</body></html>
